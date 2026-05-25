@@ -16,6 +16,15 @@
       body {
         font-family: 'Poppins', sans-serif;
       }
+      /* বাটন মুভ করার জন্য পজিশন অ্যাবসোলিউট করা জরুরি */
+      #move-random {
+        position: absolute;
+        transition: 0.2s ease;
+      }
+      .btn {
+        position: relative;
+        height: 50px; /* বাটনের জন্য কিছুটা জায়গা রাখা হলো */
+      }
     </style>
   </head>
   <body>
@@ -30,20 +39,36 @@
         <a href="https://tenor.com/view/couple-forgive-me-asking-for-forgiveness-begging-crying-gif-15195810">Couple Forgive Me Sticker</a>from
         <a href="https://tenor.com/search/couple-stickers">Couple Stickers</a>
       </div>
-      <script
-        type="text/javascript"
-        async
-        src="https://tenor.com/embed.js"
-      ></script>
+      <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
 
-      <!-- তোমার দেওয়া নতুন টেক্সট এখানে অ্যাড করা হলো -->
       <h1>Think again, My Madam! 😣</h1>
       <p>Madam Elma, try koro... jani 'No' te tip diba na, 'Yes' dilei tomi amr! 😑💚</p>
 
       <div class="btn">
         <a href="yes.html">Yes</a>
-        <a href="no3.html">No</a>
+        <!-- এখানে id="move-random" এবং href="#" করে দেওয়া হলো -->
+        <a href="#" id="move-random">No</a>
       </div>
     </div>
+
+    <!-- বাটন মুভ করানোর সরাসরি ম্যাজিক কোড -->
+    <script>
+      const moveBtn = document.getElementById('move-random');
+      
+      function moveButton() {
+        const x = Math.random() * (window.innerWidth - moveBtn.offsetWidth - 20);
+        const y = Math.random() * (window.innerHeight - moveBtn.offsetHeight - 20);
+        
+        moveBtn.style.left = `${x}px`;
+        moveBtn.style.top = `${y}px`;
+      }
+
+      // মাউস নিলে বা টাচ করলেই বাটন পালাবে
+      moveBtn.addEventListener('mouseenter', moveButton);
+      moveBtn.addEventListener('touchstart', function(e) {
+        e.preventDefault(); // মোবাইল স্ক্রিনে যাতে পেজ স্ক্রল না হয়ে বাটন পালায়
+        moveButton();
+      });
+    </script>
   </body>
 </html>
